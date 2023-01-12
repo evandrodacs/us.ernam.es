@@ -17,7 +17,7 @@ for index = 1, #services do
 end
 
 app:enable("etlua")
-app.layout = require("usernames.views.layout")
+app.layout = "layout"
 
 app:get("/", function(self)
   self.services = services
