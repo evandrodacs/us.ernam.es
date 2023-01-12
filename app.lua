@@ -5,7 +5,7 @@ local csrf = require("lapis.csrf")
 local http = require("lapis.nginx.http")
 
 local app = lapis.Application()
-
+--[[
 local services = require("services")
 
 for index = 1, #services do 
@@ -22,7 +22,7 @@ app:get("/", function(self)
     render = "index"
   }
 end)
---[[
+
 -- /check?service=name&username=&csrf_token=
 app:get("/check", function(self)
   local link = nil
