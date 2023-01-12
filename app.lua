@@ -1,8 +1,8 @@
 local gsub = string.gsub
 
 local lapis = require("lapis")
-local csrf = require("lapis.csrf")
-local http = require("lapis.nginx.http")
+--local csrf = require("lapis.csrf")
+--local http = require("lapis.nginx.http")
 
 local app = lapis.Application()
 --[[
