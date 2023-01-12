@@ -17,7 +17,7 @@ for index = 1, #services do
 end
 
 app:enable("etlua")
-app.layout = require("usernames.views.layout")
+app.layout = require("views.layout")
 
 app:get("/", function(self)
   self.services = services
@@ -26,7 +26,6 @@ app:get("/", function(self)
   self.escape = function(_, value)
     return util.escape(value)
   end
-  ngx.say("aqui")
   return {
     render = "index"
   }
