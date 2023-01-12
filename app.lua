@@ -63,7 +63,7 @@ app:get("/check", function(self)
   end
   return {
     json = {
-      service = service.name,
+      service = self.params.service,
       link = link or ""
     }
   } 
