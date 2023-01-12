@@ -26,6 +26,7 @@ app:get("/", function(self)
   self.escape = function(_, value)
     return util.escape(value)
   end
+  ngx.say("aqui")
   return {
     render = "index"
   }
