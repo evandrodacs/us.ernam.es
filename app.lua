@@ -16,6 +16,7 @@ for index = 1, #services do
   services[service.name] = service
 end
 
+app:enable("etlua")
 app.layout = "layout"
 
 app:get("/", function(self)
