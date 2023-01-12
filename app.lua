@@ -17,6 +17,7 @@ for index = 1, #services do
 end
 
 app:enable("etlua")
+app.views_prefix = "usernames.views"
 app.layout = "layout"
 
 app:get("/", function(self)
