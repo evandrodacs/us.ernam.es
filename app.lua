@@ -22,7 +22,7 @@ app:get("/", function(self)
     render = "index"
   }
 end)
---[[
+
 -- /check?service=name&username=&csrf_token=
 app:get("/check", function(self)
   local link = nil
@@ -68,5 +68,5 @@ app:get("/check", function(self)
     }
   } 
 end)
---]]
+
 return app
