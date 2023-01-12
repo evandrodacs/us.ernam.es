@@ -4,6 +4,8 @@ local lapis = require("lapis")
 local csrf = require("lapis.csrf")
 local http = require("lapis.nginx.http")
 
+local config = require("lapis.config").get()
+
 local app = lapis.Application()
 
 local services = require("services")
@@ -18,6 +20,7 @@ app.layout = "layout"
 app:get("/", function(self)
   self.services = services
   self.csrf_token = csrf.generate_token(self)
+  self.config = config
   return {
     render = "index"
   }

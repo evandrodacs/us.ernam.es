@@ -1,1 +1,20 @@
-<%-content_for("inner")%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Find the perfect username that is available on all social media - us.ernam.es</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="title" content="us.ernam.es">
+        <meta name="description" content="Find the perfect username that is available on all social media">
+        <meta name="keywords" content="find, usernames, username, social, medias, facebook, telegram, instagram, domain, .com, .net, discord">
+        <meta name="robots" content="index, follow">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="language" content="English">
+        <link rel="stylesheet" href="<%=config.url%>static/css/uikit.min.css" />
+        <script src="<%=config.url%>static/js/uikit.min.js"></script>
+        <script src="<%=config.url%>static/js/uikit-icons.min.js"></script>
+    </head>
+    <body>
+        <%-content_for("inner")%>
+    </body>
+</html>
