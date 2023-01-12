@@ -24,6 +24,8 @@ return {
     [position] = {
         name = "Media name",
 
+        path = "Media url",
+
         type = "media", -- default
         type = "domain",
 
@@ -45,6 +47,7 @@ return {
 
     {
         name = "Telegram",
+        path = "https://telegram.org",
         type = "media",
         test = "https://t.me/[username]",
         icon = "telegram.png"

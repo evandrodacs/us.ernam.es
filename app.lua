@@ -3,6 +3,7 @@ local gsub = string.gsub
 local lapis = require("lapis")
 local csrf = require("lapis.csrf")
 local http = require("lapis.nginx.http")
+local util = require("lapis.util")
 
 local config = require("lapis.config").get()
 
@@ -21,6 +22,9 @@ app:get("/", function(self)
   self.services = services
   self.csrf_token = csrf.generate_token(self)
   self.config = config
+  self.escape = function(_, value)
+    return util.escape(value)
+  end
   return {
     render = "index"
   }
