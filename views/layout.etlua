@@ -57,7 +57,7 @@
                     $("[data-service='<%=service.name%>']")
                         .attr("class", "")
                         .attr("href", data.path);
-                    $.getJSON("<%=config.usernames.url%>check?service=<%=escape(service.name)%>&csrf_token=<%=escape(csrf_token)%>&username="+encodeURIComponent(form.find("input").value()), function(data) {
+                    $.getJSON("<%=config.url%>check?service=<%=escape(service.name)%>&csrf_token=<%=escape(csrf_token)%>&username="+encodeURIComponent(form.find("input").value()), function(data) {
                         if(data.available===true) {
                             $("[data-service='<%=service.name%>']")
                                 .attr("class", "uk-form-success");
