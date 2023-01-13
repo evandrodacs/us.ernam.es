@@ -39,7 +39,6 @@ app:get("/check", function(self)
       local success = false
       if type(service.test) == "string" then 
         link = gsub(service.test, "%[username%]", ngx.escape_uri(self.params.username, 0))
-        ngx.say(link)
         local _, status = http.simple(link)
         if status == 200 then
           success = true
