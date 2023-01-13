@@ -52,6 +52,7 @@
                 $("#search").submit(function(event) {
                     event.preventDefault();
                     var form = $("#search");
+                    // todo: cancel all active ajax requests;
 <%
     for index = 1, #services do
         local service = services[index]
