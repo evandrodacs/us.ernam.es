@@ -25,7 +25,6 @@ app:get("/", function(self)
   self.escape = function(_, value)
     return util.escape(value)
   end
-  ngx.say(util.to_json(app))
   return {
     render = "index"
   }
