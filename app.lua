@@ -106,7 +106,7 @@ app:get("/testMode", function(self)
     if result.json.exists then
       results[#results + 1] = "Test OK"
     else
-      results[#results + 1] = "Test Not OK"
+      results[#results + 1] = "Test Not OK. Please, change the test function to fix it."
     end
     results[#results + 1] = "<br/>"
     results[#results + 1] = "\t\t\t\t\t\tNon-existent username ("
@@ -117,7 +117,7 @@ app:get("/testMode", function(self)
     if not result.json.exists then
       results[#results + 1] = "Test OK"
     else
-      results[#results + 1] = "Test Not OK"
+      results[#results + 1] = "Test Not OK. Please, change the test function to fix it."
     end
     results[#results + 1] = "<br/>"
   end

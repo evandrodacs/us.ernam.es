@@ -1,0 +1,84 @@
+
+        <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+            <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-width-1-1 uk-text-center">
+                    <h1 class="uk-heading-large">us.ernam.es</h1>
+                    <p class="uk-text-large">Find the perfect username that is available on all social media</p>
+                </div>
+            </div>
+            <hr class="uk-grid-divider">
+
+            <div class="uk-grid" data-uk-grid-margin>
+                <div class="uk-panel uk-panel-header">
+                    <form id="search" class="uk-form uk-form-stacked">
+                        <input type="hidden" name="csrf_token" value="<%=csrf_token%>">
+                        <div class="uk-form-row">
+                            <div class="uk-form-controls">
+                                <div class="uk-inline">
+                                    <span class="uk-form-icon" uk-icon="icon: pencil"></span>
+                                    <input name="username" required pattern="^[\w_\.\-]+$" class="uk-input" type="text" aria-label="Type an username to check" placeholder="Type an username to check">
+                                    <button type="submit" class="uk-button uk-margin-small-top">Check username</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- todo: order by type with separator (domain, media, ...) -->
+<%
+    for index = 1, #services do
+        local service = services[index]
+%>
+            <a href="<%=service.link%>" target="_blank" data-service='<%=service.name%>'>
+                <img src="https://www.google.com/s2/favicons?domain=<%=escape(service.link)%>">
+                <span><%=service.name%></span>
+            </a>
+<%
+    end
+%>
+
+        </div>
+
+        <hr class="uk-grid-divider">
+
+        <!-- todo: add testMode here -->
+
+        <!-- add foooter here  -->
+
+        <script src="<%=config.url%>static/js/jquery-3.6.3.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $("#search").submit(function(event) {
+                    event.preventDefault();
+                    var form = $("#search");
+<%
+    for index = 1, #services do
+        local service = services[index]
+%>
+                    $("[data-service='<%=service.name%>']")
+                        .attr("class", "")
+                        .attr("href", "<%=service.link%>");
+                        //.find("img").attr("src", "spinner.gif")
+                    $.getJSON("<%=config.url%>check?service=<%=escape(service.name)%>&csrf_token=<%=escape(csrf_token)%>&username="+encodeURIComponent(form.find("[type='text']").val()), function(data) {
+                        $("[data-service='<%=service.name%>']")
+                            .find("img").attr("src", "https://www.google.com/s2/favicons?domain=<%=escape(service.link)%>")
+                        if(data.available===true) {
+                            $("[data-service='<%=service.name%>']")
+                                .attr("class", "uk-form-success");
+                        } else {
+                            $("[data-service='<%=service.name%>']")
+                                .attr("class", "uk-form-danger");
+                        }
+                        if(data.link!=="") {
+                            $("[data-service='<%=service.name%>']")
+                                .attr("href", data.link);
+                        }
+                    });
+<%
+    end
+%>
+                    return false;
+                });
+            });
+        </script>
