@@ -21,7 +21,7 @@ app:enable("etlua")
 app:get("/", function(self)
   self.services = services
   self.csrf_token = csrf.generate_token(self)
-  self.config = config
+  self.config = config.usernames
   self.escape = function(_, value)
     return util.escape(value)
   end
