@@ -62,7 +62,7 @@ local function check(self)
         return {
           json = {
             service = service.name,
-            available = true,
+            exists = true,
             link = link
           }
         }
@@ -103,7 +103,7 @@ app:get("/testMode", function(self)
     results[#results + 1] = "): "
     self.params.username = username
     local result = check(self)
-    if result.json.available then
+    if result.json.exists then
       results[#results + 1] = "Test OK"
     else
       results[#results + 1] = "Test Not OK"
@@ -114,7 +114,7 @@ app:get("/testMode", function(self)
     results[#results + 1] = username
     results[#results + 1] = "): "
     result = check(self)
-    if not result.json.available then
+    if not result.json.exists then
       results[#results + 1] = "Test OK"
     else
       results[#results + 1] = "Test Not OK"

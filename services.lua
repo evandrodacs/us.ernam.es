@@ -31,8 +31,8 @@ return {
 
         -- function test
         test = function(username)
-            return "https://media.name/[username]", false -- (or nothing) not available
-            return "https://media.name/[username]", true -- available (pass the username link)
+            return "https://media.name/[username]", false -- (or nothing) username is not available to register
+            return "https://media.name/[username]", true -- username is available to register (pass the username link)
         end,
 
         -- string test (if status returns ~ 200 suceeds)
