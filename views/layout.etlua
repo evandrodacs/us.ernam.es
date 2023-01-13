@@ -32,7 +32,7 @@
                             <div class="uk-form-controls">
                                 <div class="uk-inline">
                                     <span class="uk-form-icon" uk-icon="icon: pencil"></span>
-                                    <input name="username" required pattern="[^\s]" class="uk-input" type="text" aria-label="Type an username to check" placeholder="Type an username to check">
+                                    <input name="username" required pattern="^[\w_\.\-]+$" class="uk-input" type="text" aria-label="Type an username to check" placeholder="Type an username to check">
                                     <button type="submit" class="uk-button uk-margin-small-top">Check username</button>
                                 </div>
                             </div>
