@@ -58,7 +58,7 @@
                         .attr("class", "")
                         .attr("href", "<%=service.link%>");
                         //.find("img").attr("src", "spinner.gif")
-                    $.getJSON("<%=config.url%>check?service=<%=escape(service.name)%>&csrf_token=<%=escape(csrf_token)%>&username="+encodeURIComponent(form.find("input").value()), function(data) {
+                    $.getJSON("<%=config.url%>check?service=<%=escape(service.name)%>&csrf_token=<%=escape(csrf_token)%>&username="+encodeURIComponent(form.find("input").val()), function(data) {
                         $("[data-service='<%=service.name%>']")
                             .find("img").attr("src", "https://www.google.com/s2/favicons?domain=<%=escape(service.link)%>")
                         if(data.available===true) {
