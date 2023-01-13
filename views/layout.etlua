@@ -56,7 +56,7 @@
 %>
                     $("[data-service='<%=service.name%>']")
                         .attr("class", "")
-                        .attr("href", service.link);
+                        .attr("href", "<%=service.link%>");
                         //.find("img").attr("src", "spinner.gif")
                     $.getJSON("<%=config.url%>check?service=<%=escape(service.name)%>&csrf_token=<%=escape(csrf_token)%>&username="+encodeURIComponent(form.find("input").value()), function(data) {
                         $("[data-service='<%=service.name%>']")
