@@ -24,7 +24,7 @@ return {
     [position] = {
         name = "Media name",
 
-        path = "Media url",
+        link = "Media url", -- (the favicon from this is user too)
 
         type = "media", -- default
         type = "domain",
@@ -38,19 +38,20 @@ return {
         -- string test (if status returns ~ 200 suceeds)
         test = "https://media.name/[username]", -- [username] = path encoded, {username} = query encoded
 
-        link = "[link]?ref=us.ernam.es", -- if have referral link, we can use it to monetize
+        href = "[link]?ref=us.ernam.es", -- if have referral link, we can use it to monetize
 
         icon = "social.png" -- from static/icons/ folder
+
+        --https://www.google.com/s2/favicons?domain=www.google.com
     },
 
     --]]
 
     {
         name = "Telegram",
-        path = "https://telegram.org",
+        link = "https://telegram.org",
         type = "media",
         test = "https://t.me/[username]",
-        icon = "telegram.png"
     },
 
 

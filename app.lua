@@ -51,9 +51,10 @@ app:get("/check", function(self)
           success = true
         end
       end
-      if success then
-        if type(service.link) == "string" then
-          link = gsub(service.link, "%[link%]", link)
+      if success and link then
+        if type(service.href) == "string" then
+          link = gsub(service.href, "%[link%]", link)
+          link = gsub(link, "%[username%]", ngx.escape_uri(self.params.username, 0))
         end
         return {
           json = {
