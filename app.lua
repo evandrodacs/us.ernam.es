@@ -1,4 +1,7 @@
 local gsub = string.gsub
+local concat = table.concat
+
+math.randomseed(ngx.time()) -- for unsafe porpuses only
 
 local lapis = require("lapis")
 local csrf = require("lapis.csrf")
@@ -31,7 +34,7 @@ app:get("/", function(self)
 end)
 
 -- /check?service=name&username=&csrf_token=
-app:get("/check", function(self)
+local function check(self)
   local link = nil
   if csrf.validate_token(self) then 
     if services[self.params.service] then
@@ -66,15 +69,63 @@ app:get("/check", function(self)
       end
     end
   end 
-  if type(link) ~= "string" then
-    link = nil
-  end
   return {
     json = {
       service = self.params.service,
-      link = link or ""
+      link = type(link) == "string" and link or ""
     }
   } 
+end
+app:get("/check", check)
+
+local charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+function string_random(length)
+  if length > 0 then
+    return string.random(length - 1) .. charset:sub(math.random(1, #charset), 1)
+  else
+    return ""
+  end
+end
+
+
+app:get("/testMode", function(self)
+  self.params.csrf_token = csrf.generate_token(self)
+  local results = {"<pre>", "Test mode:"}
+  for index = 1, #services do
+    local service = services[index]
+    self.params.service = service.name
+    results[#results + 1] = "\t\t\t"
+    results[#results + 1] = service.name
+    results[#results + 1] = ":<br/>"
+    results[#results + 1] = "\t\t\t\t\t\tExisting username ("
+    local username = service.pass or gsub(service.name, "[^a-zA-Z0-9]+", "")
+    results[#results + 1] = username
+    results[#results + 1] = "): "
+    self.params.username = username
+    local result = check(self)
+    if result.json.available then
+      results[#results + 1] = "Test OK"
+    else
+      results[#results + 1] = "Test Not OK"
+    end
+    results[#results + 1] = "<br/>"
+    results[#results + 1] = "\t\t\t\t\t\tNon-existent username ("
+    username = service.fail or gsub(string_random(15), "^%d", "")
+    results[#results + 1] = username
+    results[#results + 1] = "): "
+    result = check(self)
+    if not result.json.available then
+      results[#results + 1] = "Test OK"
+    else
+      results[#results + 1] = "Test Not OK"
+    end
+    results[#results + 1] = "<br/>"
+  end
+  results[#results + 1] = "</pre>"
+  self.testMode = concat(results, "<br/>")
+  return {
+    render = "index"
+  }
 end)
 
 return app

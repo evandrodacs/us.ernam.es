@@ -40,7 +40,17 @@
                     </form>
                 </div>
             </div>
-
+<%
+    for index = 1, #services do
+        local service = services[index]
+%>
+            <a href="<%=service.link%>" target="_blank">
+                <img src="https://www.google.com/s2/favicons?domain=<%=escape(service.link)%>">
+                <span><%=service.name%></span>
+            </a>
+<%
+    end
+%>
             <%-content_for("inner")%>
         </div>
 

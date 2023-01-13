@@ -40,9 +40,12 @@ return {
 
         href = "[link]?ref=us.ernam.es", -- if have referral link, we can use it to monetize
 
-        icon = "social.png" -- from static/icons/ folder
+        icon = "social.png", -- from static/icons/ folder
 
         --https://www.google.com/s2/favicons?domain=www.google.com
+
+        pass = "telegram", -- an known username thats exists (defaults to media name: [a-Z][a-zA-Z0-9]*)
+        fail = "SsFS0DFGFASGSDG", -- an known username thats not exists (defaults to a random string [a-zA-Z][a-zA-Z0-9]{14})
     },
 
     --]]
