@@ -79,7 +79,7 @@ end
 app:get("/check", check)
 
 local charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-function string_random(length)
+local function string_random(length)
   if length > 0 then
     return string.random(length - 1) .. charset:sub(math.random(1, #charset), 1)
   else
