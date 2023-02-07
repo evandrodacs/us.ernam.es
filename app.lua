@@ -19,8 +19,6 @@ for index = 1, #services do
   services[service.name] = service
 end
 
-app:enable("etlua")
-
 app:get("/", function(self)
   self.services = services
   self.csrf_token = csrf.generate_token(self)
